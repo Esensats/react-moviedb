@@ -153,7 +153,8 @@ function Details() {
     setTimeout(() => {
       if (loaded === true) setTimeOut(true);
     }, 15000);
-  }, [params]);
+  // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="Details">
@@ -221,7 +222,7 @@ function Details() {
         >
           {error ? (
             <span>
-              Error: {error == 404 ? <>404 - Page not found</> : error}
+              Error: {error === 404 ? <>404 - Page not found</> : error}
             </span>
           ) : (
             <span>
