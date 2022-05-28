@@ -7,6 +7,7 @@
   .hero {
     position: relative;
     z-index: 2;
+    padding-bottom: 12px;
 
     &::before {
       content: "";
@@ -170,7 +171,7 @@
       list-style: none;
       justify-content: flex-start;
       // flex-wrap: wrap;
-      overflow-x: scroll;
+      overflow-x: auto;
       margin-top: -16px;
       margin-left: -16px;
 
