@@ -1,6 +1,6 @@
 {
-  "short_name": "TheMovieDB",
   "name": "TheMovieDB",
+  "short_name": "TheMovieDB",
   "start_url": ".",
   "icons": [
     {
@@ -14,7 +14,7 @@
       "type": "image/png"
     }
   ],
-  "display": "standalone",
   "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "display": "standalone"
 }
