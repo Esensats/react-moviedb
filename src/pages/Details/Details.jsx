@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import Vote from "../../components/Vote/Vote";
 import "./details.scss";
 
-const API =
-  "https://api.themoviedb.org/3/movie/526896?api_key=a6468ac36560c45e927925b8f646b478";
+// API query example: "https://api.themoviedb.org/3/movie/526896?api_key=a6468ac36560c45e927925b8f646b478"
 
 const IMG_API = "https://image.tmdb.org/t/p/w500";
 const BACKDROP_API = "https://image.tmdb.org/t/p/w1280";
@@ -105,16 +104,27 @@ function Companies(props) {
 
 function Details() {
   const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(null);
+  const [timeOut, setTimeOut] = useState(false);
   const [movie, setMovie] = useState([]);
   const params = useParams();
 
   const fetchMovie = (API) => {
     setLoaded(false);
     fetch(API)
-      .then((data) => data.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        setError(response.status);
+        throw new Error(`Something went wrong: ${error}`);
+      })
       .then((data) => {
         setMovie(data);
         setLoaded(true);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -140,6 +150,9 @@ function Details() {
 
   useEffect(() => {
     fetchMovie(`${API_FIRST}${params.movid}?api_key=${API_KEY}`);
+    setTimeout(() => {
+      if (loaded === true) setTimeOut(true);
+    }, 15000);
   }, [params]);
 
   return (
@@ -206,7 +219,19 @@ function Details() {
             fontSize: "2em",
           }}
         >
-          Loading...
+          {error ? (
+            <span>
+              Error: {error == 404 ? <>404 - Page not found</> : error}
+            </span>
+          ) : (
+            <span>
+              {timeOut ? (
+                <>Error: Timed out. Try again later</>
+              ) : (
+                <>Loading...</>
+              )}
+            </span>
+          )}
         </p>
       )}
     </div>

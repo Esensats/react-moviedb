@@ -2,7 +2,9 @@ import React from 'react'
 
 function NoPage() {
   return (
-    <div>This is the Error 404 page</div>
+    <div className="NoPage">
+      <h1>Error 404. Unknown URL</h1>
+    </div>
   )
 }
 
