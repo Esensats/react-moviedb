@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Try the app
+
+Try the app at: https://esensats-moviedb.netlify.app/
+
 ## Available Scripts
 
 In the project directory, with Node installed, you can run:
