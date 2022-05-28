@@ -1,0 +1,56 @@
+@use "sass:map";
+// @use "functions";
+
+// Screen sizes
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
+$screen-xxl: 1300px;
+$screen-full: 1400px;
+
+// Paddings
+$container-padding: 12px;
+
+// Fonts
+$jost-font: "Jost", "Roboto", "Helvetica Neue", sans-serif;
+$roboto-font: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+$font-size: 18px;
+
+$lighten: 5;
+$darken: 25;
+
+$shadowDark: 3px 3px 5px rgba(0, 0, 0, 0.1);
+
+$colors: (
+  primary: (
+    darker: hsl(195, 27%, 20%),
+    dark: #2b7a78,
+    // hsl(178, 48%, 32%)
+    base: #3aafa9,
+    // hsl(177, 50%, 46%)
+    light: #d0e8e7,
+    // hsl(178, 34%, 86%) #def2f1
+  ),
+  secondary: (
+    dark: hsl(29, 50%, 32%),
+    base: hsl(29, 50%, 46%),
+    light: hsl(29, 50%, 75%),
+  ),
+  tertiary: (
+    dark: hsl(358, 50%, 32%),
+    base: hsl(358, 50%, 46%),
+    light: hsl(358, 50%, 75%),
+  ),
+  neutral: (
+    black: hsl(210, 29%, 8%),
+    dark: #17252a,
+    base: #8a9294,
+    light: hsl(180, 10%, 85%),
+    white: #feffff,
+  ),
+  warning: (
+    base: #c43256,
+    light: #c432571f,
+  ),
+);

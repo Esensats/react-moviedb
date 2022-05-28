@@ -1,0 +1,14 @@
+@use "variables";
+@use "sass:map";
+// @use "sass:color";
+
+// Color function (e.g. background-color: styles.clr(secondary, light)), if incorrect argument - returns red;
+@function clr($base, $shade: base) {
+  @if (map-has-key(variables.$colors, $base, $shade)) {
+    $color: map-get(map-get(variables.$colors, $base), $shade);
+    @return $color;
+  } @else {
+    @warn "Invalid color arguments: #{$base}, #{$shade}";
+    @return null;
+  }
+}

@@ -1,0 +1,138 @@
+@use "../../styles";
+@use "sass:color";
+
+.Navbar {
+  // @include styles.screen(custom, max, 300) {
+  //   background-color: red;
+  // }
+  background-color: styles.clr(primary, dark);
+  box-shadow: styles.$shadowDark;
+
+  .container {
+    height: 70px;
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+  // .input-field {
+  //   display: none;
+  // }
+  .brand-logo-wrapper {
+    flex-grow: 1;
+  }
+  .brand-logo {
+    color: styles.clr(primary, light);
+    text-decoration: none;
+    font-family: styles.$jost-font;
+    font-weight: bold;
+    font-size: 1.25em;
+    display: inline-block;
+
+    transition: all 0.5s ease;
+    &:hover {
+      // color: color.scale(styles.clr(primary, light), $blackness: 10%);
+      transform: scale(1.05) translate(-2px, -2px);
+      text-shadow: styles.clr(neutral, dark) 4px 4px 5px;
+    }
+  }
+  @keyframes szh-menu-show {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes szh-menu-hide {
+    to {
+      opacity: 0;
+    }
+  }
+
+  .szh-menu-container {
+    position: relative;
+  }
+
+  .szh-menu-button {
+    // border-radius: 5px;
+    background-color: styles.clr(neutral, dark);
+    color: styles.clr(primary, dark);
+    border: none;
+    padding: 0;
+    line-height: 0;
+    // padding: 6px;
+    height: 100%;
+    width: 50px;
+    display: block;
+
+    font-size: 1.25em;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+    &:hover {
+      width: 60px;
+      background-color: color.scale(styles.clr(neutral, dark), $blackness: 30%);
+    }
+  }
+
+  .szh-menu {
+    font-family: sans-serif;
+    font-size: 0.925rem;
+    user-select: none;
+    box-shadow: styles.$shadowDark;
+    border-radius: 6px;
+    padding: 0;
+    margin: 0;
+    min-width: 10rem;
+    position: absolute;
+    bottom: 0;
+    z-index: 100;
+    // right: 0;
+
+    &--state-closed {
+      display: none;
+    }
+
+    &--state-opening {
+      animation: szh-menu-show 0.15s ease-out;
+    }
+
+    &--state-closing {
+      animation: szh-menu-hide 0.2s ease-out forwards;
+    }
+
+    &__item {
+      border-radius: 6px;
+      list-style-type: none;
+      // transform: translateX(-100%);
+      position: absolute;
+      right: 0;
+
+      // &--hover {
+      //   color: #fff;
+      //   background-color: #59a2ff;
+      // }
+      & input {
+        padding: 10px;
+        min-width: 250px;
+        font-size: 1.2em;
+        border: none;
+        padding: 0.5em 1em;
+        // border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        box-shadow: styles.$shadowDark;
+        background-color: styles.clr(neutral, dark);
+        border: 2px solid styles.clr(primary, dark);
+        border-top: none;
+        color: styles.clr(primary, light);
+
+        &::placeholder {
+          color: styles.clr(neutral);
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}

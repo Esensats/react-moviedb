@@ -1,0 +1,44 @@
+@use "../../styles";
+@use "sass:color";
+
+.Footer {
+  $textColor: styles.clr(primary, dark);
+
+  background-color: styles.clr(neutral, dark);
+  color: $textColor;
+  height: 70px;
+  border-top: 1px solid styles.clr(primary, darker);
+  font-size: 0.8em;
+
+  .container {
+    display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+
+    & > div {
+      text-align: center;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        box-sizing: border-box;
+        
+        transition: all 0.25s ease;
+        &:hover {
+          $linkColor: color.scale($textColor, $lightness: 20%);
+          color: $linkColor;
+          // text-decoration: underline;
+          border-bottom: 1px solid $linkColor;
+        }
+      }
+    }
+
+    @include styles.screen(small) {
+      grid-template-rows: 1fr;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

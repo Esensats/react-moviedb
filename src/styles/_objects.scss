@@ -1,0 +1,15 @@
+@use 'variables' as var;
+
+.container {
+  box-sizing: border-box;
+  margin: {
+    left: auto;
+    right: auto;
+  }
+  padding: {
+    left: var.$container-padding;
+    right: var.$container-padding;
+  }
+  width: var.$screen-xl;
+  max-width: 100%;
+}

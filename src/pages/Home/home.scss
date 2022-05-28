@@ -1,0 +1,52 @@
+@use "../../styles";
+
+.Home {
+  padding-top: 12px;
+  padding-bottom: 24px;
+  .container {
+    display: flex;
+    // grid-template-columns: 1fr;
+    justify-content: center;
+    // flex-direction: column;
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    padding: 0;
+    padding-bottom: 150px;
+
+    @media screen and (max-height: 625px) {
+      padding: {
+        left: 40px;
+        right: 40px;
+      }
+      @include styles.screen(custom, min, 380) {
+        padding: {
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+
+    .loadingBlock {
+      height: 1000vh;
+    }
+
+    // @include styles.screen(custom, min, 450){
+    //   margin: {
+    //     left: auto -12px;
+    //     top: -12px;
+    //   };
+    // }
+
+    // @include styles.screen(medium){
+    //   width: styles.$screen-md;
+    //   grid-template-columns: 1fr 1fr;
+    // }
+    // @media screen and (min-height: 500px) {
+    //   @include styles.screen(medium) {
+    //     grid-template-columns: 1fr 1fr;
+    //   }
+    // }
+  }
+}

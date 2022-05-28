@@ -1,0 +1,225 @@
+@use "../../styles";
+@use "sass:color";
+
+.Details {
+  // position: relative;
+  // z-index: -10;
+  .hero {
+    position: relative;
+    z-index: 2;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(30, 30, 30, 0.6) 0%,
+        rgba(30, 30, 30, 0.9) 75%
+      );
+      z-index: 5;
+    }
+
+    .heroContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+
+      @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+        // background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(0.15em);
+        backdrop-filter: blur(0.15em);
+      }
+
+      padding-top: 12px;
+      padding-bottom: 12px;
+
+      @include styles.screen(small) {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .posterImg {
+        @include styles.screen(small) {
+          flex-grow: 1;
+        }
+        @include styles.screen(medium) {
+          margin-left: 12px;
+        }
+        img {
+          display: block;
+          max-width: 100%;
+          height: 350px;
+          max-height: 70vh;
+          border-radius: 5px;
+          box-shadow: 7px 7px 0px rgba(0, 0, 0, 0.5);
+
+          @include styles.screen(small) {
+            height: auto;
+            max-height: 80vh;
+          }
+        }
+      }
+
+      .info {
+        @include styles.screen(small) {
+          flex-shrink: 3;
+          margin-left: 12px;
+        }
+        @include styles.screen(medium) {
+          flex-shrink: 10;
+          margin-left: 24px;
+          margin-right: 12px;
+        }
+        * {
+          padding: 0;
+          margin: 0;
+        }
+        .title {
+          display: flex;
+          align-items: center;
+          font-size: 5vw;
+          // color: styles.clr(primary, light);
+          margin: {
+            top: 12px;
+            bottom: 12px;
+          }
+
+          @include styles.screen(small) {
+            font-size: 1.25em;
+          }
+
+          span.Vote {
+            // font-size: 0.9em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+            width: 33px;
+            border-radius: 0.5em;
+            font-weight: 900;
+            margin-right: 12px;
+          }
+        }
+        .subtitle {
+          display: flex;
+          flex-wrap: wrap;
+          list-style: none;
+          padding: 0;
+          display: flex;
+
+          $tagBg: color.scale(styles.clr(primary, light), $alpha: -40%);
+          %tag {
+            background-color: $tagBg;
+            color: styles.clr(neutral, dark);
+            padding: 5px 10px;
+            text-align: center;
+            border-radius: 0.5em;
+            flex-grow: 1;
+          }
+          // border-right: 5px solid styles.clr(primary);
+
+          li {
+            @extend %tag;
+            margin-right: 5px;
+            margin-bottom: 5px;
+
+            &.runtime {
+              flex-grow: 0;
+              // margin-left: auto;
+            }
+          }
+        }
+        .overviewTitle {
+          margin-top: 12px;
+        }
+        .tagline {
+          font-style: italic;
+          color: styles.clr(neutral);
+        }
+        .overview,
+        .budget,
+        .revenue,
+        .homepage,
+        .tagline {
+          margin-top: 6px;
+        }
+        .homepage a {
+          color: styles.clr(primary);
+          text-decoration: none;
+          &:hover {
+            border-bottom: 2px solid styles.clr(primary);
+          }
+        }
+      }
+    }
+  }
+  .companies {
+    position: relative;
+    z-index: 10;
+    ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      justify-content: flex-start;
+      // flex-wrap: wrap;
+      overflow-x: scroll;
+      margin-top: -16px;
+      margin-left: -16px;
+
+      // background-color: #00008844;
+
+      li {
+        max-height: 100px;
+
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 150px;
+
+        background-color: color.scale(styles.clr(neutral, light), $alpha: -25%);
+
+        // @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+        //   background-color: rgba(255, 255, 255, 0.6);
+        //   -webkit-backdrop-filter: blur(5em);
+        //   backdrop-filter: blur(5em);
+        // }
+
+        box-shadow: 5px 5px 0 rgba(150, 150, 150, 0.9);
+        margin: {
+          bottom: 5px;
+          right: 5px;
+        }
+
+        color: styles.clr(neutral, dark);
+        font-weight: bold;
+
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        box-sizing: border-box;
+
+        border-radius: 0.8rem;
+
+        margin-top: 16px;
+        margin-left: 16px;
+        img {
+          display: block;
+          width: 150px;
+          max-height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}

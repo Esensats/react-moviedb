@@ -1,0 +1,105 @@
+@use "../../styles";
+
+.Movie {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  // border-radius: 3px;
+
+  box-sizing: border-box;
+  box-shadow: styles.$shadowDark;
+  position: relative;
+  // cursor: pointer;
+  overflow-y: hidden;
+  // margin: {
+  //   right: 50px;
+  //   left: 50px;
+  // }
+  flex: 1 1 180px;
+  max-width: 400px;
+  min-height: 300px;
+
+  transition: all .25s ease;
+
+  @include styles.screen(medium) {
+    flex-basis: 200px;
+  }
+
+  // @media screen and (max-height: 900px) {
+  //   flex-basis: 200px;
+  // }
+  &:hover {
+    transition-delay: 0.1s;
+    transform: scale(1.03);
+    z-index: 10;
+
+    .overview {
+      transform: translateY(0%);
+      transition-delay: 0.35s;
+      transition-timing-function: ease-out;
+    }
+  }
+
+  img {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    max-width: 100%;
+    // object-fit: fill;
+    // max-height: 80vh;
+    // max-height: 100%;
+    display: block;
+  }
+  .movieInfo {
+    background-color: styles.clr(primary, dark);
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    gap: 6px;
+    // align-items: stretch;
+    padding: {
+      left: 10px;
+    }
+    // height: 1px;
+    min-height: 50px;
+    flex-grow: 1;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  .movieTitle {
+    margin: 0;
+    // flex-grow: 1;
+    // font-family: styles.$jost-font;
+    font-size: 1em;
+    align-self: center;
+  }
+  .Vote {
+    border-bottom-right-radius: 4px;
+  }
+  .overview {
+    // background-color: styles.clr(primary, light);
+    // opacity: 0.7;
+    // backdrop-filter: blur(8px);
+    
+    /* slightly transparent fallback */
+    background-color: rgba(255, 255, 255, 0.9);
+    
+    /* if backdrop support: very transparent and blurred */
+    @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+      background-color: rgba(255, 255, 255, 0.5);
+      -webkit-backdrop-filter: blur(2em);
+      backdrop-filter: blur(2em);
+    }
+    
+    padding: 0.5em;
+    color: styles.clr(neutral, dark);
+    border-radius: 4px;
+    max-height: 96%;
+
+    overflow: auto;
+    position: absolute;
+    z-index: 20;
+    bottom: 0;
+    transition: all 0.5s ease-in;
+    transform: translateY(101%);
+  }
+}

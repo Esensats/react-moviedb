@@ -1,0 +1,70 @@
+@use "variables" as *;
+
+// Breakpoints
+@mixin screen($size, $type: min, $pixels: $screen-sm) {
+  @if $size == "small" {
+    @media screen and (#{$type + -width}: $screen-sm) {
+      @content;
+    }
+  }
+  @else if $size == 'medium' {
+    @media screen and (#{$type + -width}: $screen-md) {
+        @content;
+    }
+  }
+ @else if $size == 'large' {
+    @media screen and (#{$type + -width}: $screen-lg) {
+        @content;
+    }
+  }
+  @else if $size == 'custom' {
+    @media screen and (#{$type + -width}: ($pixels + px)) {
+     @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
+
+// @mixin smMinBreakPoint {
+//   @media (min-width: #{$screen-sm}) {
+//     @content;
+//   }
+// }
+
+// @mixin mdMinBreakPoint {
+//   @media (min-width: #{$screen-md}) {
+//     @content;
+//   }
+// }
+
+// @mixin lgMinBreakPoint {
+//   @media (min-width: #{$screen-lg}) {
+//     @content;
+//   }
+// }
+
+// @mixin xlMinBreakPoint {
+//   @media (min-width: #{$screen-xl}) {
+//     @content;
+//   }
+// }
+
+// @mixin xxlMinBreakPoint {
+//   @media (min-width: #{$screen-xxl}) {
+//     @content;
+//   }
+// }
+
+// @mixin customMinBreakPoint($size) {
+//   @media (min-width: ($size+"px")) {
+//     @content;
+//   }
+// }
+
+// @mixin customMaxBreakPoint($size) {
+//   @media (max-width: ($size+"px")) {
+//     @content;
+//   }
+// }
