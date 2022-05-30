@@ -2,8 +2,9 @@
 @use "sass:color";
 
 .Details {
-  // position: relative;
-  // z-index: -10;
+  $halfBlack: rgba(3, 5, 15, 0.4);
+  $lightTeal: color.scale(styles.clr(primary, light), $alpha: -40%);
+
   .hero {
     position: relative;
     z-index: 2;
@@ -22,6 +23,11 @@
         rgba(30, 30, 30, 0.6) 0%,
         rgba(30, 30, 30, 0.9) 75%
       );
+      @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+        // background-color: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(0.15em);
+        backdrop-filter: blur(0.15em);
+      }
       z-index: 5;
     }
 
@@ -32,11 +38,11 @@
       position: relative;
       z-index: 10;
 
-      @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-        // background-color: rgba(255, 255, 255, 0.5);
-        -webkit-backdrop-filter: blur(0.15em);
-        backdrop-filter: blur(0.15em);
-      }
+      // @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+      //   // background-color: rgba(255, 255, 255, 0.5);
+      //   -webkit-backdrop-filter: blur(0.15em);
+      //   backdrop-filter: blur(0.15em);
+      // }
 
       padding-top: 12px;
       padding-bottom: 12px;
@@ -59,7 +65,7 @@
           height: 350px;
           max-height: 70vh;
           border-radius: 5px;
-          box-shadow: 7px 7px 0px rgba(0, 0, 0, 0.5);
+          box-shadow: 7px 7px 0px $halfBlack;
 
           @include styles.screen(small) {
             height: auto;
@@ -69,6 +75,11 @@
       }
 
       .info {
+        background-color: $halfBlack;
+        box-sizing: border-box;
+        padding: 12px;
+        border-radius: 5px;
+
         @include styles.screen(small) {
           flex-shrink: 3;
           margin-left: 12px;
@@ -85,6 +96,7 @@
         .title {
           display: flex;
           align-items: center;
+          font-family: styles.$jost-font;
           font-size: 5vw;
           // color: styles.clr(primary, light);
           margin: {
@@ -115,9 +127,8 @@
           padding: 0;
           display: flex;
 
-          $tagBg: color.scale(styles.clr(primary, light), $alpha: -40%);
           %tag {
-            background-color: $tagBg;
+            background-color: $lightTeal;
             color: styles.clr(neutral, dark);
             padding: 5px 10px;
             text-align: center;
@@ -138,24 +149,34 @@
           }
         }
         .overviewTitle {
+          font-family: styles.$jost-font;
           margin-top: 12px;
         }
         .tagline {
+          margin-top: 12px;
+          font-weight: 300;
           font-style: italic;
           color: styles.clr(neutral);
         }
+        // .overview {
+        //   margin-bottom: 6px;
+        // }
         .overview,
-        .budget,
-        .revenue,
-        .homepage,
-        .tagline {
+        .revenue {
           margin-top: 6px;
         }
-        .homepage a {
-          color: styles.clr(primary);
-          text-decoration: none;
-          &:hover {
-            border-bottom: 2px solid styles.clr(primary);
+        .budget {
+          margin-top: 8px;
+        }
+        .homepage {
+          margin-top: 8px;
+
+          a {
+            color: styles.clr(primary);
+            text-decoration: none;
+            &:hover {
+              border-bottom: 2px solid styles.clr(primary);
+            }
           }
         }
       }
@@ -172,22 +193,26 @@
       justify-content: flex-start;
       // flex-wrap: wrap;
       overflow-x: auto;
-      margin-top: -16px;
-      margin-left: -16px;
+      margin-top: -10px;
+      margin-left: -4px;
+
+      font-family: styles.$jost-font;
+      line-height: 1.15em;
+      text-align: center;
+      font-weight: 500;
 
       // background-color: #00008844;
 
       li {
-        max-height: 100px;
-
-        margin: 0;
-        padding: 0;
+        max-height: 90px;
+        max-width: 120px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-basis: 150px;
 
-        background-color: color.scale(styles.clr(neutral, light), $alpha: -25%);
+        background-color: $lightTeal;
+        // background-color: color.scale(styles.clr(neutral, dark), $alpha: -25%);
 
         // @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
         //   background-color: rgba(255, 255, 255, 0.6);
@@ -195,30 +220,34 @@
         //   backdrop-filter: blur(5em);
         // }
 
-        box-shadow: 5px 5px 0 rgba(150, 150, 150, 0.9);
+        box-shadow: 7px 7px 0 $halfBlack;
         margin: {
-          bottom: 5px;
-          right: 5px;
+          bottom: 7px;
+          right: 7px;
         }
 
         color: styles.clr(neutral, dark);
-        font-weight: bold;
+        // font-weight: bold;
 
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 7px;
-        padding-bottom: 7px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         box-sizing: border-box;
 
-        border-radius: 0.8rem;
+        border-radius: 5px;
 
         margin-top: 16px;
         margin-left: 16px;
         img {
           display: block;
-          width: 150px;
           max-height: 100%;
+          max-width: 100%;
           object-fit: contain;
+          border-radius: 2px;
+          filter:  grayscale(100%);
+          -webkit-filter:  grayscale(100%);
+          // opacity: .8;
         }
       }
     }

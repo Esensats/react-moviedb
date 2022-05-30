@@ -13,7 +13,6 @@
     gap: 15px;
 
     padding: 0;
-    padding-bottom: 150px;
 
     @media screen and (max-height: 625px) {
       padding: {
@@ -48,5 +47,11 @@
     //     grid-template-columns: 1fr 1fr;
     //   }
     // }
+  }
+  .tip {
+    text-align: center;
+    color: styles.clr(neutral);
+    margin-top: 75px;
+    margin-bottom: 125px;
   }
 }

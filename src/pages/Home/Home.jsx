@@ -114,6 +114,7 @@ class Home extends Component {
           )}
           {/* <button>Click to console log</button> */}
         </div>
+        <p className="tip">Tip: Scroll down to load more movies.</p>
       </div>
     );
   }

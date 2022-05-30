@@ -87,15 +87,26 @@ function Languages(props) {
 }
 
 function Companies(props) {
+  const title = (companyProps) => {
+    return companyProps.origin_country
+      ? companyProps.name + " (" + companyProps.origin_country + ")"
+      : companyProps.name;
+  };
   return (
     <ul>
       {props.companies.map((company, i) => (
         <li key={company.id}>
-          <img
-            src={IMG_API + company.logo_path}
-            alt={company.name + " (" + company.origin_country + ")"}
-            title={company.name + " (" + company.origin_country + ")"}
-          />
+          {company.logo_path ? (
+            <img
+              src={IMG_API + company.logo_path}
+              alt={title({name: company.name, origin_country: company.origin_country})}
+              title={title({name: company.name, origin_country: company.origin_country})}
+            />
+          ) : (
+            <span>
+              {title({name: company.name, origin_country: company.origin_country})}
+            </span>
+          )}
         </li>
       ))}
     </ul>
@@ -153,7 +164,7 @@ function Details() {
     setTimeout(() => {
       if (loaded === true) setTimeOut(true);
     }, 15000);
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -192,17 +203,17 @@ function Details() {
                     <p className="overview">{overview}</p>
                   </>
                 )}
-                {homepage && (
-                  <p className="homepage">
-                    <a href="{homepage}">{homepage}</a>
-                  </p>
-                )}
                 <p className="budget">
                   Budget: {currencyFormatter.format(budget)}
                 </p>
                 <p className="revenue">
                   Revenue: {currencyFormatter.format(revenue)}
                 </p>
+                {homepage && (
+                  <p className="homepage">
+                    <a href="{homepage}">{homepage}</a>
+                  </p>
+                )}
               </div>
             </div>
             {companies && (
