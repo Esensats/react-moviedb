@@ -103,7 +103,10 @@
         // background-color: #00008844;
 
         @include styles.screen(medium) {
-          // margin-left: -4px;
+          margin: {
+            left: 12px;
+            right: 12px;
+          }
         }
 
         &::-webkit-scrollbar {
@@ -218,6 +221,7 @@
       }
 
       .posterImg {
+        margin-bottom: 4px;
         @include styles.screen(small) {
           flex-grow: 1;
         }
