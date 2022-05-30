@@ -13,6 +13,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: func.clr(neutral, dark);
+
+  &::-webkit-scrollbar {
+    background-color: func.clr(primary, darker);
+    border-left: 1px solid func.clr(primary, darker);
+    // border-radius: 20px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: func.clr(neutral, dark);
+    border: 3px solid func.clr(primary, darker);
+    border-radius: 6px;
+    box-sizing: content-box;
+  }
 }
 
 #root {

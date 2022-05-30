@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Vote from "../../components/Vote/Vote";
+import Vote from "../../components/Vote/Vote"; // Movie's average vote rating component
 import "./details.scss";
+
+/*
+ * This is a page component for displaying the details of a specific movie. The page knows which movie
+ * it is from the URL [/:id] (e.g. domain.com/123456), and not from props.
+ * You can access the page from the Home page by clicking one of the movies.
+ */
+
+/*
+  This is a page component for displaying the details of a specific movie. The page knows which movie
+  it is from the URL [/:id] (e.g. domain.com/123456), and not from props.
+  You can access the page from the Home page by clicking one of the movies.
+ */
 
 // API query example: "https://api.themoviedb.org/3/movie/526896?api_key=a6468ac36560c45e927925b8f646b478"
 
-const IMG_API = "https://image.tmdb.org/t/p/w500";
-const BACKDROP_API = "https://image.tmdb.org/t/p/w1280";
-const API_FIRST = "https://api.themoviedb.org/3/movie/";
+const IMG_API = "https://image.tmdb.org/t/p/w500"; // For movie poster images
+const LOGO_API = "https://image.tmdb.org/t/p/w300"; // Production company logos, they are small
+const BACKDROP_API = "https://image.tmdb.org/t/p/w780"; // For the backdrop image (which is blurred, hence lowres)
+const API_FIRST = "https://api.themoviedb.org/3/movie/"; // First half of the API URL
 const API_KEY = "a6468ac36560c45e927925b8f646b478";
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
@@ -87,6 +100,7 @@ function Languages(props) {
 }
 
 function Companies(props) {
+  // Listing the movie's production companies
   const title = (companyProps) => {
     return companyProps.origin_country
       ? companyProps.name + " (" + companyProps.origin_country + ")"
@@ -98,18 +112,53 @@ function Companies(props) {
         <li key={company.id}>
           {company.logo_path ? (
             <img
-              src={IMG_API + company.logo_path}
-              alt={title({name: company.name, origin_country: company.origin_country})}
-              title={title({name: company.name, origin_country: company.origin_country})}
+              src={LOGO_API + company.logo_path}
+              alt={title({
+                name: company.name,
+                origin_country: company.origin_country,
+              })}
+              title={title({
+                name: company.name,
+                origin_country: company.origin_country,
+              })}
             />
           ) : (
             <span>
-              {title({name: company.name, origin_country: company.origin_country})}
+              {title({
+                name: company.name,
+                origin_country: company.origin_country,
+              })}
             </span>
           )}
         </li>
       ))}
     </ul>
+  );
+}
+
+function Overview(props) {
+  return (
+    <div className="overviewWrapper" id={props.id}>
+      <div className="overviewContainer">
+        {props.overview && (
+          <>
+            <h3 className="overviewTitle">Overview</h3>
+            <p className="overview">{props.overview}</p>
+          </>
+        )}
+        <p className="budget">
+          Budget: {currencyFormatter.format(props.budget)}
+        </p>
+        <p className="revenue">
+          Revenue: {currencyFormatter.format(props.revenue)}
+        </p>
+        {props.homepage && (
+          <p className="homepage">
+            <a href="{homepage}">{props.homepage}</a>
+          </p>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -197,25 +246,22 @@ function Details() {
 
                 {tagline && <p className="tagline">{tagline}</p>}
 
-                {overview && (
-                  <>
-                    <h3 className="overviewTitle">Overview</h3>
-                    <p className="overview">{overview}</p>
-                  </>
-                )}
-                <p className="budget">
-                  Budget: {currencyFormatter.format(budget)}
-                </p>
-                <p className="revenue">
-                  Revenue: {currencyFormatter.format(revenue)}
-                </p>
-                {homepage && (
-                  <p className="homepage">
-                    <a href="{homepage}">{homepage}</a>
-                  </p>
-                )}
+                <Overview
+                  overview={overview}
+                  budget={budget}
+                  revenue={revenue}
+                  homepage={homepage}
+                  id="overview-inner"
+                ></Overview>
               </div>
             </div>
+            <Overview
+              overview={overview}
+              budget={budget}
+              revenue={revenue}
+              homepage={homepage}
+              id="overview-outer"
+            ></Overview>
             {companies && (
               <div className="container companies">
                 <Companies companies={companies}></Companies>
