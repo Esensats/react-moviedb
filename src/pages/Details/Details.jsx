@@ -154,7 +154,7 @@ function Overview(props) {
         </p>
         {props.homepage && (
           <p className="homepage">
-            <a href="{homepage}">{props.homepage}</a>
+            <a href={props.homepage} target="_blank" rel="noreferrer">{props.homepage}</a>
           </p>
         )}
       </div>
