@@ -103,9 +103,29 @@ class Home extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
+  handlePreviousPage(event) {
+    event.preventDefault();
+    this.setState({
+      currentSlice: 0,
+    });
+    this.nextPage(this.props.currentPage - 1);
+    this.printPage();
+  }
+
   render() {
     return (
       <div className="Home">
+        {this.props.currentPage > 1 && (
+          <a
+            href="/"
+            className="previousPageLink"
+            onClick={(event) => {
+              this.handlePreviousPage(event);
+            }}
+          >
+            <span>Previous page</span>
+          </a>
+        )}
         <div className="container">
           {this.state.loaded ? (
             this.state.movies.map((movie, i) => <Movie key={i} {...movie} />)

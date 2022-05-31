@@ -3,6 +3,17 @@
 .Home {
   padding-top: 12px;
   padding-bottom: 24px;
+  .previousPageLink {
+    color: styles.clr(primary);
+    display: block;
+    text-align: center;
+    transform: translateY(-7px);
+    text-decoration: none;
+
+    &:hover span {
+      border-bottom: 1px solid styles.clr(primary);
+    }
+  }
   .container {
     display: flex;
     // grid-template-columns: 1fr;
